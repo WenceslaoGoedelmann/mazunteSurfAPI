@@ -35,9 +35,7 @@ export const createTurno =async (req:Request, res:Response):Promise<void> => {
 
     const turno = new Turno(data);
 
-    
-
-    //await turno.save()
+    await turno.save()
 
     await sendToAdminEmail(usuario, turnoData) //enviamos el email para verificar el usuario
 
