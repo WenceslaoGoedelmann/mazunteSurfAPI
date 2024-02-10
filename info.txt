@@ -1,0 +1,5 @@
+base de datos
+usuario: mazunteSurf
+pass: TJOMqXVH4QlY4b2F
+
+mongodb+srv://mazunteSurf:TJOMqXVH4QlY4b2F@masuntesufapi.bnmvu0w.mongodb.net/
