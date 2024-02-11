@@ -45,14 +45,22 @@ export const createTurno =async (req:Request, res:Response):Promise<void> => {
 }
 
 export const getAllTurnos =async (req:Request, res:Response): Promise<void> => {
-    //traer turnos segun una condicion:
-    //const condicion = { status: "pending"}
-    //const turnos = await Turno.find(condicion) 
-   
-    //traer todos los turnos:
+
     const turnos = await Turno.find() 
 
     res.json({
         data: [ ...turnos]
+    })
+}
+
+export const getHours =async (req:Request, res:Response): Promise<void> => {
+    const date:String = req.body;
+    
+    const turnos = await Turno.find(date) 
+    
+    const hours =turnos.map(e => e.hour)
+
+    res.json({
+        data: [ ...hours]
     })
 }
