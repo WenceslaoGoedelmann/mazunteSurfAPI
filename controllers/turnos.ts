@@ -55,11 +55,27 @@ export const getAllTurnos =async (req:Request, res:Response): Promise<void> => {
 
 export const getHours =async (req:Request, res:Response): Promise<void> => {
     const date = req.body;
-    const turnos = await Turno.find(date) 
-    const hours =turnos.map(e => e.hour)
-    res.json({
-        data: [...hours]
-    })
+    try {
+        const turnos = await Turno.find(date) 
+        if(!turnos){ //si no exite respondemos con el error
+            res.status(400).json({
+                msg: "no hay turnos reservados para ese dia"
+            });
+            return
+        }
+
+        const hours =turnos.map(e => e.hour)
+        res.json({
+            data: [...hours]
+        })
+        
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({
+            msg: "Error en el servidor"
+        })
+    }
+
    
 }
 
