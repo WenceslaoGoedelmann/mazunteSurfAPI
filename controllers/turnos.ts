@@ -53,12 +53,10 @@ export const getAllTurnos =async (req:Request, res:Response): Promise<void> => {
     })
 }
 
-
-
 export const getHours =async (req:Request, res:Response): Promise<void> => {
     console.log("hola")
-    const token = req.headers["x-token"]
-    //const date = req.body;
+    
+    const date = req.body;
     //console.log (dateReq)
     //const consulta = {date: dateReq}
 
@@ -66,10 +64,17 @@ export const getHours =async (req:Request, res:Response): Promise<void> => {
     
     //const hours =turnos.map(e => e.hour)
 
-    /* res.json({
-        data: [ ...hours]
-    }) */
+    res.json({
+        data: [ ...date]
+    })
+   
+}
+
+/* export const getHours =async (req:Request, res:Response): Promise<void> => {
+   
+    const token = req.headers["x-token"]
+
     res.json({
         data: [ token]
     })
-}
+} */
