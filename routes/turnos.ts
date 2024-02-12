@@ -27,7 +27,7 @@ router.post(
 
 router.get("/allturnos", [validarJWT, isAdmin, recolectarErrores], getAllTurnos);
 
-router.post("/hours",  getHours);
+router.post("/hours",[check("date", "La fecha es obligatoria").not().isEmpty(), recolectarErrores],  getHours);
 
 /* [check("date", "La fecha es obligatoria").not().isEmpty(), recolectarErrores] */
 
