@@ -58,7 +58,7 @@ export const getHours =async (req:Request, res:Response): Promise<void> => {
     const turnos = await Turno.find(date) 
     const hours =turnos.map(e => e.hour)
     res.json({
-        data: [...date]
+        data: [...hours]
     })
    
 }
