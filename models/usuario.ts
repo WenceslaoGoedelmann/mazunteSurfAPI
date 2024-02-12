@@ -8,6 +8,9 @@ export interface IUser {
     cellphone: string;
     location: string;
     address: string;
+    height: string;
+    weight: string;
+    experience: string;
     password: string;
     rol?: string;
     code?: string;
@@ -35,6 +38,18 @@ const UserSchema = new Schema<IUser>({
     address:{
         type: String,
         required: [true, "La direccion es obligatoria"]
+    },
+    height: {
+        type: String,
+        required: [true, "La altura es obligatoria"]
+    },
+    weight: {
+        type: String,
+        required: [true, "El peso es obligatorio"]
+    },
+    experience: {
+        type: String,
+        required: [true, "La experiencia es obligatoria"]
     },
     password:{
         type:String,

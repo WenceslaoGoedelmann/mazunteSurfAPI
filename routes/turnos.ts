@@ -17,9 +17,6 @@ router.post(
     isVerified,
     check("date", "La fecha es obligatoria").not().isEmpty(),
     check("hour", "La hora es obligatoria").not().isEmpty(),
-    check("altura", "La altura es obligatoria").not().isEmpty(),
-    check("peso", "El peso es obligatorio").not().isEmpty(),
-    check("experience", "La experiencia es obligatoria").not().isEmpty(),
     recolectarErrores,
   ],
   createTurno
@@ -28,7 +25,5 @@ router.post(
 router.get("/allturnos", [validarJWT, isAdmin, recolectarErrores], getAllTurnos);
 
 router.post("/hours",[check("date", "La fecha es obligatoria").not().isEmpty(), recolectarErrores],  getHours);
-
-/* [check("date", "La fecha es obligatoria").not().isEmpty(), recolectarErrores] */
 
 export default router;

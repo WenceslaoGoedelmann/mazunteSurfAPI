@@ -45,12 +45,7 @@ export const sendToAdminEmail =async (usuario: IUser, turnoData: ITurno):Promise
             subject: "Nuevo Turno",
             text: `
  El usuario ${usuario.nombre} ha creado un nuevo turno:
- Dia: ${turnoData.date} Hora: ${turnoData.hour} 
- Experiencia: ${turnoData.experience} 
- Altura: ${turnoData.altura} 
- Peso: ${turnoData.peso} 
- Comentario: ${turnoData.comment}    
-            `
+ Dia: ${turnoData.date} Hora: ${turnoData.hour} `
         }
         //enviar el correo electrónico
         await transporter.sendMail(mailOptions)
