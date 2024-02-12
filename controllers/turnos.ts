@@ -65,7 +65,7 @@ export const getHours =async (req:Request, res:Response): Promise<void> => {
     //const hours =turnos.map(e => e.hour)
 
     res.json({
-        data: [ ...date]
+        data: date
     })
    
 }
