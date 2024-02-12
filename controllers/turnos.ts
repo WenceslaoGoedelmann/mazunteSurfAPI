@@ -56,7 +56,7 @@ export const getAllTurnos =async (req:Request, res:Response): Promise<void> => {
 export const getHours =async (req:Request, res:Response): Promise<void> => {
     console.log("hola")
     
-    const date = req.body;
+    const {date} = req.body;
     //console.log (dateReq)
     //const consulta = {date: dateReq}
 
