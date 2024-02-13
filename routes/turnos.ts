@@ -3,12 +3,12 @@ import { check } from "express-validator";
 import { recolectarErrores } from "../middlewares/recolectarErrores";
 import validarJWT from "../middlewares/validarJWT";
 import { isVerified } from "../middlewares/validarVerificado";
-import { createTurno, getAllTurnos, getHours, getTurnos } from "../controllers/turnos";
+import { createTurno, getAllTurnos, getHours, getUserTurnos } from "../controllers/turnos";
 import { isAdmin } from "../middlewares/validarRol";
 
 const router = Router();
 
-router.get("/", [validarJWT, recolectarErrores], getTurnos);
+router.get("/", [validarJWT, recolectarErrores], getUserTurnos);
 
 router.post(
   "/",

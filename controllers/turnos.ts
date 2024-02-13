@@ -6,7 +6,7 @@ import Turno, { ITurno } from "../models/turnos";
 import { sendToAdminEmail } from "../mailer/mailer";
 import { IUser } from "../models/usuario";
 
-export const getTurnos =async (req:Request, res:Response): Promise<void> => {
+export const getUserTurnos =async (req:Request, res:Response): Promise<void> => {
 
     const usuarioId: ObjectId = req.body.usuarioConfirmado._id;//esto viene de la validacion del JWT
 

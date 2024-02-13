@@ -10,9 +10,9 @@ import generarJWT from "../helpers/generarJWT";
 //creamos el controlador para registrar un usuario
 export const register =async (req:Request, res:Response):Promise<void> => {
     
-    const {nombre, email, password,cellphone,location,address }: IUser = req.body //desestructuramos la respuesta que viene en el body de la Request
+    const {nombre, email, password,cellphone,location,address, height,weight,experience}: IUser = req.body //desestructuramos la respuesta que viene en el body de la Request
     
-    const usuario = new Usuario({nombre, email, password,cellphone,location,address }) //creamos el nuevo usuario utilizando el esquema de usuario
+    const usuario = new Usuario({nombre, email, password,cellphone,location,address, height,weight,experience }) //creamos el nuevo usuario utilizando el esquema de usuario
 
     const salt = bcryptjs.genSaltSync() //creamos el salto para encriptar la contrasenia
 

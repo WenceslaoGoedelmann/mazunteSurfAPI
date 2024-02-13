@@ -16,9 +16,9 @@ router.post("/register",  [
     check("cellphone", "El celular es obligatorio").not().isEmpty(),
     check("location", "La ciudad es obligatoria").not().isEmpty(),
     check("address", "La direccion es obligatoria").not().isEmpty(),
-    check("height", "La altura es obligatoria").not().isEmpty(),
+    /* check("height", "La altura es obligatoria").not().isEmpty(),
     check("weight", "El peso es obligatorio").not().isEmpty(),
-    check("experience", "La experiencia es obligatoria").not().isEmpty(),
+    check("experience", "La experiencia es obligatoria").not().isEmpty(), */
     check("password", "El password debe ser de 6 caracteres").isLength({
       min: 6,
     }),
