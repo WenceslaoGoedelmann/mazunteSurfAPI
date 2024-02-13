@@ -36,7 +36,6 @@ const UserSchema = new Schema<IUser>({
         type:String,
         required: [true, "El correo es obgligatorio"]
     },
-
     cellphone:{
         type: String,
         required: [true, "El celular es obligatorio"]
