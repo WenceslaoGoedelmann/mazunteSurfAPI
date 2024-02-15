@@ -93,7 +93,7 @@ export const statusTurno =async (req:Request, res:Response):Promise<void> => {
     const { _id, status } = req.body //desestructuramos la respuesta que viene en el body de la Request
     
     try{
-        const turno = await Turno.findOne({_id}) //buscamos el usuario en la base de datos con el email
+        const turno = await Turno.findOne({_id}) 
 
         if(!turno){ //si no existe el usuario respondemos con el error
             res.status(400).json({
@@ -118,4 +118,32 @@ export const statusTurno =async (req:Request, res:Response):Promise<void> => {
     }
 }
 
+export const deleteTurno =async (req:Request, res:Response):Promise<void> => {
+    const { _id } = req.body //desestructuramos la respuesta que viene en el body de la Request
+    
+    try{
+        const turno = await Turno.findOne({_id}) 
+
+        if(!turno){ //si no existe el usuario respondemos con el error
+            res.status(400).json({
+                msg: "No se encontró el turno en la base de datos"
+            })
+            return
+        }
+
+        
+        //si esta todo OK, actualizo el usuario
+        const turnoEliminado = await Turno.findOneAndDelete({_id})
+        //y respondo al front
+        res.status(200).json({
+            msg: "turno eliminado con éxito"
+        })
+
+    }catch(error){
+        console.log(error)
+        res.status(500).json({
+            msg: "Error en el servidor"
+        })
+    }
+}
 
