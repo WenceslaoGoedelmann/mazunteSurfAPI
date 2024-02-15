@@ -3,6 +3,9 @@ import { Model, Schema, Types, model } from "mongoose";
 export interface ITurno {
   createdAt: Date;
   user: Types.ObjectId;
+  nombre:string;
+  surname:string;
+  email:string;
   status: string;
   date: string;
   hour: string;
@@ -16,6 +19,18 @@ const TurnoSchema = new Schema<ITurno>({
     user:{
         type: Schema.Types.ObjectId,
         ref: "Usuario",
+        required: true
+    },
+    nombre: {
+        type: String,
+        required: true
+    },
+    surname: {
+        type: String,
+        required: true
+    },
+    email: {
+        type: String,
         required: true
     },
     status: {

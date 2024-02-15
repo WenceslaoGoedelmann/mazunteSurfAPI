@@ -3,7 +3,7 @@ import { check } from "express-validator";
 import { recolectarErrores } from "../middlewares/recolectarErrores";
 import validarJWT from "../middlewares/validarJWT";
 import { isVerified } from "../middlewares/validarVerificado";
-import { createTurno, getAllTurnos, getHours, getUserTurnos } from "../controllers/turnos";
+import { AdminGetTurnos, createTurno, getHours, getUserTurnos } from "../controllers/turnos";
 import { isAdmin } from "../middlewares/validarRol";
 
 const router = Router();
@@ -22,7 +22,9 @@ router.post(
   createTurno
 );
 
-router.get("/allturnos", [validarJWT, isAdmin, recolectarErrores], getAllTurnos);
+
+
+router.post("/adminturnos", [validarJWT, isAdmin, recolectarErrores], AdminGetTurnos);
 
 router.post("/hours",[check("date", "La fecha es obligatoria").not().isEmpty(), recolectarErrores],  getHours);
 

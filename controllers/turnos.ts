@@ -29,6 +29,9 @@ export const createTurno =async (req:Request, res:Response):Promise<void> => {
     const data = {
         ...turnoData, //toda la data que viene del body
         user: usuarioId, //le agremmos la info del usuario
+        nombre:usuario.nombre,
+        surname:usuario.surname,
+        email:usuario.email,
         createdAt: new Date(), //le agremmos la fecha de creacion
         status: "pending" //le agremmos el estado por defecto "pending"
     }
@@ -44,9 +47,16 @@ export const createTurno =async (req:Request, res:Response):Promise<void> => {
     })
 }
 
-export const getAllTurnos =async (req:Request, res:Response): Promise<void> => {
 
-    const turnos = await Turno.find() 
+
+export const AdminGetTurnos =async (req:Request, res:Response): Promise<void> => {
+
+      const consulta = req.body
+      
+      delete consulta.usuarioConfirmado
+   
+  
+    const turnos = await Turno.find(consulta) 
 
     res.json({
         data: [ ...turnos]
@@ -57,7 +67,7 @@ export const getHours =async (req:Request, res:Response): Promise<void> => {
     const date = req.body;
     try {
         const turnos = await Turno.find(date) 
-        if(!turnos){ //si no exite respondemos con el error
+        if(!turnos){ //si no existe respondemos con el error
             res.status(400).json({
                 msg: "no hay turnos reservados para ese dia"
             });
@@ -79,11 +89,4 @@ export const getHours =async (req:Request, res:Response): Promise<void> => {
    
 }
 
-/* export const getHours =async (req:Request, res:Response): Promise<void> => {
-   
-    const token = req.headers["x-token"]
 
-    res.json({
-        data: [ token]
-    })
-} */
