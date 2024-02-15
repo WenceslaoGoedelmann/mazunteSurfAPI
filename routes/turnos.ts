@@ -22,7 +22,7 @@ router.post(
   createTurno
 );
 
-router.delete("/deleteturno", [validarJWT, recolectarErrores], deleteTurno);
+router.post("/deleteturno", [validarJWT, recolectarErrores], deleteTurno);
 
 
 router.post("/adminturnos", [validarJWT, isAdmin, recolectarErrores], AdminGetTurnos);
