@@ -7,9 +7,6 @@ const generarJWT = (id: string= ""):Promise<string>=>{
         jwt.sign(
             payload,
             process.env.CLAVESECRETA as string,
-            {
-                expiresIn: "4h"
-            }, //el token se vence luego de 4hs
             (err: Error | null, token: string | undefined)=>{ //le tenemos que pasar un callback
                 if(err){
                     console.log(err)
