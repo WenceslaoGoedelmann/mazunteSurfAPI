@@ -6,9 +6,9 @@ import Usuario,{IUser} from "../models/usuario";
 
 const validarJWT =async (req:Request, res:Response, next: NextFunction):Promise<void> => {
 
-    const token = req.headers["x-token"] as string; //guardo el token enviado desde el front
+    const token = req.headers["x-token"] as string; 
 
-    if(!token){ //si no lo enviaron tiro error
+    if(!token){ 
         res.status(401).json({
             msg: "No hay token en la peticion"
         })
@@ -17,20 +17,20 @@ const validarJWT =async (req:Request, res:Response, next: NextFunction):Promise<
 
     try{
         const claveSecreta = process.env.CLAVESECRETA as string;
-        const payload = jwt.verify(token, claveSecreta) as JwtPayload; //de esta forma "desencripto" el token, osea la respuesta va a ser el id del usuario
+        const payload = jwt.verify(token, claveSecreta) as JwtPayload; 
 
         const {id} = payload;
 
-        const usuarioConfirmado: IUser | null = await Usuario.findById(id) //busco el usuario con el id "findById" en la base de datos
+        const usuarioConfirmado: IUser | null = await Usuario.findById(id) 
 
-        if(!usuarioConfirmado){//si no encuentro el usuario le tiro el error
+        if(!usuarioConfirmado){
             res.status(401).json({
                 msg: "Token no válido"
             })
             return;
         }
 
-        req.body.usuarioConfirmado = usuarioConfirmado // agrego en el body de la Request la data del usuario
+        req.body.usuarioConfirmado = usuarioConfirmado 
 
         next()
     }catch(error){

@@ -7,9 +7,7 @@ import { login, register, verifyUser } from "../controllers/auth";
 
 const router = Router();
 
-//creamos la ruta para crear un nuevo usuario
 
-//si la llamada es de tipo post y contiene el el path /register, primero hacemos las validaciones correspondientes, llamo a la funcion recolectarErrores y por ultimo si esta todo OK llamamos al controlador register
 router.post("/register" , [
   check("nombre", "El nombre es obligatorio").not().isEmpty(),
   check("surname", "El apellido es obligatorio").not().isEmpty(),
@@ -30,7 +28,6 @@ router.post("/register" , [
 
 
 
-//si la llamada es de tipo patch (actualizacion) y contiene el el path /verify, primero hacemos las validaciones correspondientes, llamo a la funcion recolectarErrores y por ultimo si esta todo OK llamamos al controlador verifyUser  
   router.patch(
     "/verify",
     [
@@ -41,7 +38,6 @@ router.post("/register" , [
     verifyUser
   );
 
-  //si la llamada es de tipo post y contiene el el path /login, primero hacemos las validaciones correspondientes, llamo a la funcion recolectarErrores y por ultimo si esta todo OK llamamos al controlador login
   router.post(
     "/login",
     [

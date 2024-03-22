@@ -10,11 +10,11 @@ export const getUserTurnos = async (
   req: Request,
   res: Response
 ): Promise<void> => {
-  const usuarioId: ObjectId = req.body.usuarioConfirmado._id; //esto viene de la validacion del JWT
+  const usuarioId: ObjectId = req.body.usuarioConfirmado._id; 
 
   const consulta = { user: usuarioId };
 
-  const turnos = await Turno.find(consulta); //busco en la base de datos todas (ver que uso find y no findOne) las ordenes que tiene el usuario
+  const turnos = await Turno.find(consulta);
 
   res.json({
     data: [...turnos],
@@ -32,8 +32,8 @@ export const createTurno = async (
   const turnoData: ITurno = req.body;
 
   const data = {
-    ...turnoData, //toda la data que viene del body
-    user: usuarioId, //le agremmos la info del usuario
+    ...turnoData, 
+    user: usuarioId, 
     nombre: usuario.nombre,
     surname: usuario.surname,
     age: usuario.age,
@@ -44,15 +44,15 @@ export const createTurno = async (
     height: usuario.height,
     weight: usuario.weight,
     experience: usuario.experience,
-    createdAt: new Date(), //le agremmos la fecha de creacion
-    status: "Pendiente", //le agremmos el estado por defecto "Pendiente"
+    createdAt: new Date(), 
+    status: "Pendiente", 
   };
 
   const turno = new Turno(data);
 
   await turno.save();
 
-  await sendToAdminEmail(usuario, turnoData); //enviamos el email para verificar el usuario
+  await sendToAdminEmail(usuario, turnoData); 
 
   res.status(201).json({
     turno,
@@ -79,7 +79,7 @@ export const getHours = async (req: Request, res: Response): Promise<void> => {
   try {
     const turnos = await Turno.find(date);
     if (!turnos) {
-      //si no existe respondemos con el error
+      
       res.status(400).json({
         msg: "no hay turnos reservados para ese dia",
       });
@@ -102,25 +102,25 @@ export const statusTurno = async (
   req: Request,
   res: Response
 ): Promise<void> => {
-  const { _id, status } = req.body; //desestructuramos la respuesta que viene en el body de la Request
+  const { _id, status } = req.body; 
 
   try {
     const turno = await Turno.findOne({ _id });
 
     if (!turno) {
-      //si no existe el usuario respondemos con el error
+      
       res.status(400).json({
         msg: "No se encontró el turno en la base de datos",
       });
       return;
     }
 
-    //si esta todo OK, actualizo el usuario
+    
     const turnoActualizado = await Turno.findOneAndUpdate(
       { _id },
       { status: status }
     );
-    //y respondo al front
+    
     res.status(200).json({
       msg: "turno actualizado con éxito",
     });
@@ -136,22 +136,22 @@ export const deleteTurno = async (
   req: Request,
   res: Response
 ): Promise<void> => {
-  const { _id } = req.body; //desestructuramos la respuesta que viene en el body de la Request
+  const { _id } = req.body;
 
   try {
     const turno = await Turno.findOne({ _id });
 
     if (!turno) {
-      //si no existe el usuario respondemos con el error
+      
       res.status(400).json({
         msg: "No se encontró el turno en la base de datos",
       });
       return;
     }
 
-    //si esta todo OK, actualizo el usuario
+    
     const turnoEliminado = await Turno.findOneAndDelete({ _id });
-    //y respondo al front
+    
     res.status(200).json({
       msg: "turno eliminado con éxito",
     });

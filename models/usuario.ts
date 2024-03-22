@@ -1,7 +1,7 @@
 import {Model, Schema, model} from "mongoose"
 import { ROLES } from "../helpers/constants";
 
-//creamos la interface del usuario
+
 export interface IUser {
     nombre: string;
     surname: string;
@@ -18,7 +18,7 @@ export interface IUser {
     code?: string;
     verified?:boolean;
 }
-//creamos el schema del usuario
+
 const UserSchema = new Schema<IUser>({
     nombre:{
         type: String,
@@ -77,14 +77,11 @@ const UserSchema = new Schema<IUser>({
     }
 })
 
-//cuando creo un nuevo usuario, mongo automaticamente agrega un _v y _id al esquema del usuario
-//con el siguiente metodo cuando le respondemos al front con la info del usuario no incluimos en la respuesta los siguientes valore "_v, password, _id, code"
 UserSchema.methods.toJSON = function(){
     const {__v, password, _id, code, ...usuario } = this.toObject()
     return usuario
 }
 
-//creamos el modelo de usuario, en la base de datos se va a llamar "Usuario" y va a utilizar el esquema UserSchema y cuando lo usemos en la API lo llamamos como Usuario
 const Usuario: Model<IUser> = model<IUser>("Usuario", UserSchema)
 
 export default Usuario

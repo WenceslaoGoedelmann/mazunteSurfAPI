@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-//creamos la conexion a la base de datos
+
 
 export const dbConnection = async ():Promise<void> => {
     try{
